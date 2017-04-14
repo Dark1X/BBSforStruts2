@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+<!-- 指定全局国际化资源文件 -->
+	<constant name="struts.custom.i18n.resources" value="mess"/>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+	<constant name="struts.devMode" value="true" />
+	<!-- 所有的Action定义都应该放在package下 -->	
+	<package name="crazyit" namespace="/" extends="struts-default">
+		<default-action-ref name="warning"></default-action-ref><!-- 定义全局错误信息 -->
+		
+		<action name="*Action" class="com.sccc.actions.LoginAndRigister" method="{1}">
+			<!-- 定义三个逻辑视图和物理资源之间的映射 -->
+			<result name="error">/WEB-INF/SystemShow/LoginErro.jsp</result><!-- 登录错误-->
+			<result name="success">/View/pet.jsp</result><!-- 登录成功转向-->
+			<result name="goRegist">/View/adopt.htm</result><!-- 注册转向-->
+			<result name="regsuc">/View/index.jsp</result><!-- 注册成功后跳转到登录页面 -->
+			<result name="reg">/reg.jsp</result><!-- 注册失败-->
+			<allowed-methods>login,goRegist,regist</allowed-methods>
+		</action>
+		
+		<!-- <action name="warning">定义错误信息 
+			<result>./warning.jsp</result>
+		</action>-->
+		
+		
+	</package>
+</struts>
